@@ -1,6 +1,7 @@
 package leandro.escalera;
 
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
+import com.sun.xml.internal.ws.util.StringUtils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -720,7 +721,7 @@ public class Main {
 
   public static int[] solution(int[] a) {
 
-    int []result = new int[a.length];
+    int[] result = new int[a.length];
     List<Integer> myListPerson = new ArrayList();
     List<Integer> myListTree = new ArrayList();
     if (a.length >= 1 && a.length <= 1000) {
@@ -728,7 +729,7 @@ public class Main {
         if (a[i] >= -1 && a[i] <= 1000) {
           if (a[i] != -1) {
             myListPerson.add(a[i]);
-          }else {
+          } else {
             myListTree.add(i);
           }
         }
@@ -737,22 +738,44 @@ public class Main {
       Collections.sort(myListPerson);
 
       int var = 0;
-     for (int k=0;k<result.length;k++){
-      if (myListTree.contains(k)){
-        result[k]=-1;
-      }else{
-        result[k]=myListPerson.get(var);
-        var++;
+      for (int k = 0; k < result.length; k++) {
+        if (myListTree.contains(k)) {
+          result[k] = -1;
+        } else {
+          result[k] = myListPerson.get(var);
+          var++;
+        }
       }
-
-
-     }
-
-
-
     }
 
     return result;
+  }
+
+
+  public static String solution(String inputString) {
+
+    StringBuilder stringBuilder = new StringBuilder(inputString.toLowerCase());
+    StringBuilder newStringBuilder = null;
+    int cont = 0;
+    if (stringBuilder.length() >= 0 && stringBuilder.length() <= 50) {
+      for (int i = 0; i < stringBuilder.length(); i++) {
+        if (stringBuilder.charAt(i) == '(') {
+          cont++;
+          int max= stringBuilder.length();
+//          for (int j=i; j< stringBuilder.substring(i,max); j++){
+//
+//          }
+
+        } else {
+          newStringBuilder.append(stringBuilder.charAt(i));
+        }
+
+        System.out.println();
+      }
+
+    }
+
+    return null;
   }
 
 
@@ -792,8 +815,13 @@ public class Main {
 //      System.out.println("El Numero NO es de los billete de la suerte");
 //    }
 
-    int[] a = {-1, 150, 190, 170, -1, -1, 160, 180};
-    int[] var = solution(a);
+    // Ejercicio 12
+//    int[] a = {-1, 150, 190, 170, -1, -1, 160, 180};
+//    int[] var = solution(a);
+
+    //Ejercicio 13
+    String inputString = "HOLA";
+    String result = solution(inputString);
 
   }
 }
