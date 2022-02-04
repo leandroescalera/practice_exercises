@@ -755,27 +755,37 @@ public class Main {
   public static String solution(String inputString) {
 
     StringBuilder stringBuilder = new StringBuilder(inputString.toLowerCase());
-    StringBuilder newStringBuilder = null;
-    int cont = 0;
+    StringBuilder newStringBuilder = new StringBuilder(inputString.length());
+    List<String> myListToStrings = new ArrayList();
+    String var = "";
     if (stringBuilder.length() >= 0 && stringBuilder.length() <= 50) {
-      for (int i = 0; i < stringBuilder.length(); i++) {
+      int i = 0;
+      while (i < stringBuilder.length()) {
         if (stringBuilder.charAt(i) == '(') {
-          cont++;
-          int max= stringBuilder.length();
-//          for (int j=i; j< stringBuilder.substring(i,max); j++){
-//
-//          }
-
+          myListToStrings.add(newStringBuilder.toString());
+          int j = i+1;
+          while (j < stringBuilder.length()) {
+            if (stringBuilder.charAt(j) != ')') {
+              char varChar = stringBuilder.charAt(j);
+              var = var+varChar+"";
+            }else {
+              break;
+            }
+            j++;
+          }
+          newStringBuilder.append(var);
+          newStringBuilder.reverse();
+          myListToStrings.add(newStringBuilder.toString());
+          i=i+j;
         } else {
           newStringBuilder.append(stringBuilder.charAt(i));
         }
-
-        System.out.println();
+        i++;
       }
 
     }
 
-    return null;
+    return newStringBuilder.toString();
   }
 
 
@@ -820,7 +830,7 @@ public class Main {
 //    int[] var = solution(a);
 
     //Ejercicio 13
-    String inputString = "HOLA";
+    String inputString = "foo(bar)baz";
     String result = solution(inputString);
 
   }
