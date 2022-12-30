@@ -26,24 +26,29 @@ public class MiPrimerProyecto {
     static public String buscarParentesis(String inputString) {
         String auxSubCadena = "";
         String auxSubCadena2 = "";
-        Integer tamaño = inputString.length()-1;
-        for (int i = 0; i <= tamaño; i++) {
+        Integer tamaño = inputString.length() - 1;
+        int i = 0, j = 0, p = 2, t = 0;
+        while (i <= tamaño) {
             if (inputString.charAt(i) == '(') {
-                for (int j = i+1; j <= tamaño; j++) {
+                j = i + 1;
+                while (j <= tamaño) {
                     if (inputString.charAt(j) == ')') {
-                        auxSubCadena = inputString.substring(i, j-1);
+                        auxSubCadena = inputString.substring(i + 1, j);
                         auxSubCadena = quitarParentesis(auxSubCadena);
                         auxSubCadena = invertir(auxSubCadena);
-                        
+                        break;
                     }
-
+                    t++;
+                    j++;
                 }
-            }else{
-                auxSubCadena2+=inputString.charAt(i);
+                auxSubCadena2 = auxSubCadena2 + auxSubCadena;
+                i = i + t + p;
+                t = 0;
+            } else {
+                auxSubCadena2 = auxSubCadena2 + inputString.charAt(i);
+                i++;
             }
-
         }
-
         return auxSubCadena2;
     }
 
@@ -56,7 +61,7 @@ public class MiPrimerProyecto {
     public static void main(String[] args) {
         // TODO code application logic here
 
-        String str = "(bar)";
+        String str = "foo(bar)baz(blim)";
 
         String var = solution(str);
         //System.out.println(invertir(str));
